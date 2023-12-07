@@ -1,5 +1,5 @@
 # This file analyzes the weather data of 2022 in Papa New Guinnea.
-# It provides graphs for total solar radiation each der per m² and waterproduction of a 100m²
+# It provides graphs for total solar radiation each der per m² and waterproduction of a 100m² system
 
 import pandas as pd
 from datetime import datetime
