@@ -96,3 +96,5 @@ forecast_test_auto = auto_arima.predict(n_periods=len(df_test))
 df['forecast_auto'] = [None]*len(df_train) + list(forecast_test_auto)
 df.plot()
 plt.show()
+
+# TODO: implement Sarimax
