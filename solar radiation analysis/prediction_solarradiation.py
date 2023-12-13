@@ -27,6 +27,22 @@ df['hoursofsunlight'] = hours_of_sunlight
 # Creates a column totalsolarradiation which stores the watts per square meter for each day of the year
 df['totalsolarradiation'] = df['hoursofsunlight'] * df['solarradiation']
 
+#
+# Creates column hoursofsunlight that stores the hours between sunrise and sunset rounded to the hour
+hours_of_sunlight = []
+date_format = '%Y-%m-%dT%H:%M:%S'
+
+for sunrise, sunset in zip(df['sunrise'], df['sunset']):
+    sr = datetime.strptime(sunrise, date_format)
+    ss = datetime.strptime(sunset, date_format)
+    hours = (ss -sr).total_seconds() / 3600
+    hours_of_sunlight.append(hours)
+
+df['hoursofsunlight'] = hours_of_sunlight
+
+# Creates a column totalsolarradiation which stores the watts per square meter for each day of the year
+df['totalsolarradiation'] = df['hoursofsunlight'] * df['solarradiation']
+
 # Creates new column date that maps the strings from the column datetime to datetime objects and drops datetime column
 df['date'] = pd.to_datetime(df['datetime'], format='%Y-%m-%d')
 
@@ -65,7 +81,7 @@ pacf_diff = plot_pacf(df_train)
 plt.show()
 
 # Model 1: (2,1,0) parameters
-model = ARIMA(df_train, order=(2,1,0))
+model = ARIMA(df_train, order=(3,1,0))
 model_fit = model.fit()
 print(model_fit.summary())
 

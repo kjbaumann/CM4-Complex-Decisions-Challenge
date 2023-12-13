@@ -69,7 +69,7 @@ new_row_total_radiation = {
     'Name': 'Total Sunlight Radiation per Day',
     'Unit': 'W/m²',
     'Mean': df['totalsolarradiation'].mean(),
-    'Median': df['totalsolarradiation'],
+    'Median': df['totalsolarradiation'].median(),
     'Mode': df['totalsolarradiation'].mode()[0]
     }
 
@@ -78,8 +78,9 @@ descriptive_df = descriptive_df._append(new_row_total_radiation, ignore_index=Tr
 new_row_total_water_production= {
     'Name': 'Total Water Production per Day',
     'Unit': 'kg', 'Mean': df['waterproduction'].mean(),
-    'Median': df['waterproduction'],
+    'Median': df['waterproduction'].median(),
     'Mode': df['waterproduction'].mode()[0]
     }
 
 descriptive_df = descriptive_df._append(new_row_total_water_production, ignore_index=True)
+descriptive_df.to_csv('./exports/descripitve_analysis.csv')
