@@ -61,7 +61,7 @@ plt.show()
 
 # Descriptive Analysis
 # Calculates mean, mode, median of total_sunlight_radiation and waterproduction and stores it as a dataframe
-columns = ['Name', 'Unit' 'Mean', 'Median', 'Mode']
+columns = ['Name', 'Unit' 'Mean', 'Median', 'Mode', 'Min', 'Max']
 
 descriptive_df = pd.DataFrame(columns=columns)
 
@@ -70,16 +70,21 @@ new_row_total_radiation = {
     'Unit': 'W/m²',
     'Mean': df['totalsolarradiation'].mean(),
     'Median': df['totalsolarradiation'].median(),
-    'Mode': df['totalsolarradiation'].mode()[0]
+    'Mode': df['totalsolarradiation'].mode()[0],
+    'Min': df['totalsolarradiation'].min(),
+    'Max': df['totalsolarradiation'].max()
     }
 
 descriptive_df = descriptive_df._append(new_row_total_radiation, ignore_index=True)
 
 new_row_total_water_production= {
     'Name': 'Total Water Production per Day',
-    'Unit': 'kg', 'Mean': df['waterproduction'].mean(),
+    'Unit': 'kg',
+    'Mean': df['waterproduction'].mean(),
     'Median': df['waterproduction'].median(),
-    'Mode': df['waterproduction'].mode()[0]
+    'Mode': df['waterproduction'].mode()[0],
+    'Min': df['waterproduction'].min(),
+    'Max': df['waterproduction'].max()
     }
 
 descriptive_df = descriptive_df._append(new_row_total_water_production, ignore_index=True)
